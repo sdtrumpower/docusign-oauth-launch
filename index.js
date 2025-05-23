@@ -61,7 +61,7 @@ async function launchEnvelope(envelopeApi) {
   smsAuthentication: {
     senderProvidedNumbers: ['+7045771969']
   }
-};
+}
        },
     status: "sent"
   };
