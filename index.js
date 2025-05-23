@@ -6,10 +6,10 @@ const open = require('open');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const DS_AUTH_SERVER = 'account.docusign.com';
+const DS_AUTH_SERVER = 'account-d.docusign.com';
 const basePath = 'https://demo.docusign.net/restapi';
 
-const oauthBasePath = 'account.docusign.com';
+const oauthBasePath = 'account-d.docusign.com';
 
 const scopes = ["signature", "impersonation"];
 
