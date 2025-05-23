@@ -62,7 +62,7 @@ async function launchEnvelope(envelopeApi) {
     senderProvidedNumbers: ['+7045771969']
   }
 }
-       },
+       ,
     status: "sent"
   };
 
