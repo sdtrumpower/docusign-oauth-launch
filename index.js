@@ -53,9 +53,16 @@ async function launchEnvelope(envelopeApi) {
       {
         roleName: "Nurse",
         name: "Nancy Nurse",
-        email: "sdtdsign+nancy@gmail.com"
-        
-      },
+        email: "sdtdsign+nancy@gmail.com",
+          recipientId: '2',
+  routingOrder: '2',
+  requireIdLookup: true,
+  idCheckConfigurationName: 'SMS Auth',
+  smsAuthentication: {
+    senderProvidedNumbers: ['+7045771969']
+  }
+};
+       },
     status: "sent"
   };
 
