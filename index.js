@@ -6,10 +6,10 @@ const open = require('open');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const DS_AUTH_SERVER = 'account-d.docusign.com';
+const DS_AUTH_SERVER = 'account.docusign.com';
 const basePath = 'https://demo.docusign.net/restapi';
 
-const oauthBasePath = 'account-d.docusign.com';
+const oauthBasePath = 'account.docusign.com';
 
 const scopes = ["signature", "impersonation"];
 
@@ -47,22 +47,15 @@ async function launchEnvelope(envelopeApi) {
     templateRoles: [
       {
         roleName: "Supervisor",
-        name: "John Supervisor",
+        name: "Scott Docusign",
         email: "sdtdsign+iam@gmail.com"
       },
       {
-        roleName: "Nurse",
+        roleName: "nurse",
         name: "Nancy Nurse",
-        email: "sdtdsign+nancy@gmail.com",
-          recipientId: '2',
-  routingOrder: '2',
-  requireIdLookup: true,
-  idCheckConfigurationName: 'SMS Auth',
-  smsAuthentication: {
-    senderProvidedNumbers: ['+7045771969']
-  }
-}
-       ,
+        email: "sdtdsign+nancy@gmail.com"
+      }
+    ],
     status: "sent"
   };
 
