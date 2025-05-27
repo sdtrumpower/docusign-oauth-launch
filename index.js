@@ -158,7 +158,7 @@ app.get('/callback', async (req, res) => {
     <div class="card">
       <h1>Assessment Launched Successfully</h1>
       <p>The envelope has been sent and is now active in DocuSign.</p>
-      <div class="id-box">Envelope ID: ${results.envelopeId}</div>
+      <div class="id-box">Envelope ID: ${envelopeId}</div>
       <p style="margin-top: 2rem;"><a href="/" class="button">Launch Another</a></p>
     </div>
   </body>
