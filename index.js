@@ -54,8 +54,8 @@ async function launchEnvelope(envelopeApi) {
     },
                {
       roleName: "Nurse", // Must match template role
-      name: "Nancy Nurse",
-      email: "sdtdsign+nancy@gmail.com",
+      name: "Scott Trumpower",
+      email: "scott.trumpower@docusign.com",
       recipientId: "2",           
       routingOrder: "2"
     },
