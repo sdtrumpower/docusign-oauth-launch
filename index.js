@@ -1,11 +1,9 @@
 require('dotenv').config();
 const express = require('express');
-const bodyParser = require("body-parser");
 const docusign = require('docusign-esign');
 const open = require('open');
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
 const port = process.env.PORT || 3000;
 
 const DS_AUTH_SERVER = 'account-d.docusign.com';
@@ -14,119 +12,6 @@ const basePath = 'https://demo.docusign.net/restapi';
 const oauthBasePath = 'account-d.docusign.com';
 
 const scopes = ["signature", "impersonation"];
-
-
-app.get("/launch", (req, res) => {
-  res.send(`
-    <!DOCTYPE html>
-      <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <title>Start Clinical Assessment</title>
-      <style>
-        body {
-          font-family: 'Segoe UI', sans-serif;
-          background-color: #f7fafc;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-        }
-        .card {
-          background: white;
-          padding: 2rem 3rem;
-          border-radius: 10px;
-          box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-          text-align: center;
-        }
-        input[type="text"] {
-          padding: 0.75rem;
-          width: 100%;
-          font-size: 1rem;
-          margin-bottom: 1.5rem;
-          border: 1px solid #cbd5e0;
-          border-radius: 6px;
-        }
-        button {
-          background-color: #2b6cb0;
-          color: white;
-          padding: 0.75rem 1.5rem;
-          font-size: 1rem;
-          border: none;
-          border-radius: 6px;
-          cursor: pointer;
-        }
-        button:hover {
-          background-color: #2c5282;
-        }
-      </style>
-    </head>
-    <body>
-      <div class="card">
-        <h2>Launch Clinical Skills Assessment</h2>
-        <form action="/start" method="POST">
-          <label for="nurseName">Enter Nurse's Full Name:</label><br />
-          <input type="text" id="nurseName" name="nurseName" required />
-          <button type="submit">Start Assessment</button>
-        </form>
-      </div>
-    </body>
-    </html>
-  `);
-});
-
-app.post("/start", async (req, res) => {
-  const nurseName = req.body.nurseName;
-  const nurseEmail = "placeholder@example.com"; // Still required, but not used for in-person signer
-
-  try {
-    // create envelope definition
-    const envelopeDefinition = {
-      templateId: process.env.TEMPLATE_ID,
-      status: "sent",
-      templateRoles: [
-        {
-          roleName: "Supervisor",
-          name: "Scott Docusign",
-          email: "sdtdsign+iam@gmail.com",
-          clientUserId: "1001",
-          routingOrder: "1"
-        },
-        {
-          roleName: "Nurse",
-          routingOrder: "2",
-          inPersonSignerName: nurseName,
-          signerEmail: nurseEmail,
-          hostName: "Scott Docusign",
-          hostEmail: "sddsign+iam@gmail.com"
-        }
-      ]
-    };
-
-    const envelopesApi = new docusign.EnvelopesApi(apiClient);
-    const results = await envelopesApi.createEnvelope(accountId, {
-      envelopeDefinition
-    });
-
-    // Generate the recipient view (for supervisor)
-    const viewRequest = {
-      returnUrl: "https://docusign-oauth-launch.onrender.com/done",
-      authenticationMethod: "none",
-      email: "sdtdsign+iam@gmail.com",
-      userName: "Scott Docusign",
-      clientUserId: "1001"
-    };
-
-    const viewResult = await envelopesApi.createRecipientView(accountId, results.envelopeId, {
-      recipientViewRequest: viewRequest
-    });
-
-    res.redirect(viewResult.url);
-  } catch (err) {
-    console.error("Envelope creation failed:", err);
-    res.status(500).send("Could not launch assessment");
-  }
-});
 
 app.get('/', (req, res) => {
   const authURL = `https://${DS_AUTH_SERVER}/oauth/auth?response_type=code&scope=${scopes.join('+')}&client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}`;
