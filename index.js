@@ -94,6 +94,16 @@ app.get('/callback', async (req, res) => {
   // Launch envelope
   const envelopeApi = new docusign.EnvelopesApi(apiClient);
   const envelopeId = await launchEnvelope(envelopeApi);
+  const viewRequest = {
+  returnUrl: 'https://docusign-oauth-launch.onrender.com/done',
+  authenticationMethod: 'none',
+  email: 'sdtdsign+iam@gmail.com', // must match Supervisor's role email
+  userName: 'Scott Docusign',
+  clientUserId: '1001' // must match clientUserId used in the envelope
+};
+
+const viewResult = await envelopesApi.createRecipientView(accountId, results.envelopeId, { recipientViewRequest: viewRequest });
+
 
   res.send(`
   <!DOCTYPE html>
@@ -157,9 +167,9 @@ app.get('/callback', async (req, res) => {
   <body>
     <div class="card">
       <h1>Assessment Launched Successfully</h1>
-      <p>The envelope has been sent and is now active in DocuSign.</p>
+      <p>The envelope has been sent and is now active in Docusign.</p>
       <div class="id-box">Envelope ID: ${envelopeId}</div>
-      <p style="margin-top: 2rem;"><a href="/" class="button">Launch Another</a></p>
+       <p><a href="${viewResult.url}" class="button">Sign as Supervisor</a></p>
     </div>
   </body>
   </html>
@@ -176,7 +186,8 @@ async function launchEnvelope(envelopeApi) {
       name: "Scott Docusign",
       email: "sdtdsign+iam@gmail.com",
       recipientId: "1",           
-      routingOrder: "1"
+      routingOrder: "1",
+      clientUserId: "1001"
     },
                {
       roleName: "Nurse", // Must match template role
