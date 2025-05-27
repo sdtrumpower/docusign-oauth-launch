@@ -15,7 +15,7 @@ const scopes = ["signature", "impersonation"];
 
 app.get('/', (req, res) => {
   const authURL = `https://${DS_AUTH_SERVER}/oauth/auth?response_type=code&scope=${scopes.join('+')}&client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}`;
-  res.send(`<a href="${authURL}">Connect to DocuSign</a>`);
+  res.send(`<a href="${authURL}">Launch Clinical Skills Assessment</a>`);
 });
 
 app.get('/callback', async (req, res) => {
@@ -45,19 +45,31 @@ async function launchEnvelope(envelopeApi) {
   const envDef = {
     templateId: process.env.TEMPLATE_ID,
     templateRoles: [
-      {
-        roleName: "Supervisor",
-        name: "Scott Docusign",
-        email: "sdtdsign+iam@gmail.com"
-      },
-      {
-        roleName: "nurse",
-        name: "Nancy Nurse",
-        email: "sdtdsign+nancy@gmail.com"
-      }
-    ],
-    status: "sent"
-  };
+                {
+            roleName: "Supervisor",
+            name: "Scott Docusign",
+            email: "sdtdsign+iam.com",
+            inPersonSignerName: "Nancy Nurse",
+            clientUserId: "1",
+            recipientId: "1"
+          },
+          {
+            roleName: "Nurse",
+            name: "Nancy Nurse",
+            email: "placeholder@example.com", // DocuSign needs an email, but it won't be used
+            clientUserId: "2",
+            recipientId: "2"
+          },
+          {
+            roleName: "Supervisor",
+            name: "Scott Docusign",
+            email: "sdtdsign+iam@gmail.com",
+            clientUserId: "3",
+            recipientId: "3"
+          }
+        ],
+        status: "sent"
+      };
 
   const results = await envelopeApi.createEnvelope(process.env.ACCOUNT_ID, {
     envelopeDefinition: envDef
