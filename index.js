@@ -154,29 +154,32 @@ app.get('/callback', async (req, res) => {
       }
     </style>
   </head>
-  <body>
-    
-   <div class="card">
-      <h1>Assessment Started Successfully</h1>
-      <p>The assessment has been created and is now ready.</p>
-      <div class="id-box">Envelope ID: ${envelopeId}</div>
-      <div class="id-box">Assessment Created on:</div>
-      <div class="id-box"><p id="datetime"></p>
-  <script>
-    // Get the current date and time
-    var now = new Date();
+ <body>
+  <div class="card">
+    <h1>Assessment Started Successfully</h1>
+    <p>The assessment has been created and is now ready.</p>
 
-    // Format the date and time
-    var datetime = now.toLocaleString();
+    <div class="id-box">Envelope ID: ${envelopeId}</div>
 
-    // Update the HTML content
-  document.getElementById("datetime").innerHTML = datetime;
-  </script></div>
-         <div class="id-box">This assessment is for: <b>Scott Trumpower</b></div>
-
-      <p style="margin-top: 2rem;"><a href="https://apps-d.docusign.com/send/documents?label=action-required" class="button">Begin Assessment</a></p>
+    <div class="id-box">
+      Assessment Created on: <span id="datetime" style="font-weight: bold;"></span>
     </div>
-  </body>
+
+    <div class="id-box">
+      This assessment is for: <b>Scott Trumpower</b>
+    </div>
+
+    <p style="margin-top: 2rem;">
+      <a href="https://apps-d.docusign.com/send/documents?label=action-required" class="button">Begin Assessment</a>
+    </p>
+  </div>
+
+  <script>
+    const now = new Date();
+    const datetime = now.toLocaleString();
+    document.getElementById("datetime").textContent = datetime;
+  </script>
+</body>
   </html>
 `);
 
