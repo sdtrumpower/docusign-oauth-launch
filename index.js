@@ -68,7 +68,7 @@ app.get('/', (req, res) => {
     <div class="container">
       <h1>Launch Clinical Skills Assessment</h1>
       <p>This secure session will guide a supervisor and nurse through a multi-step evaluation.</p>
-      <a href="${authURL}" class="button">Start Assessment</a>
+      <a href="${authURL}" class="button">Begin Assessment</a>
     </div>
   </body>
   </html>
@@ -92,19 +92,8 @@ app.get('/callback', async (req, res) => {
   apiClient.addDefaultHeader('Authorization', 'Bearer ' + results.accessToken);
 
   // Launch envelope
- const envelopesApi = new docusign.EnvelopesApi();
-envelopesApi.setApiClient(apiClient); // or dsApiClient, depending on your variable
+  const envelopeApi = new docusign.EnvelopesApi(apiClient);
   const envelopeId = await launchEnvelope(envelopeApi);
-  const viewRequest = {
-  returnUrl: 'https://docusign-oauth-launch.onrender.com/done',
-  authenticationMethod: 'none',
-  email: 'sdtdsign+iam@gmail.com', // must match Supervisor's role email
-  userName: 'Scott Docusign',
-  clientUserId: '1001' // must match clientUserId used in the envelope
-};
-
-const viewResult = await envelopesApi.createRecipientView(accountId, results.envelopeId, { recipientViewRequest: viewRequest });
-
 
   res.send(`
   <!DOCTYPE html>
@@ -167,10 +156,10 @@ const viewResult = await envelopesApi.createRecipientView(accountId, results.env
   </head>
   <body>
     <div class="card">
-      <h1>Assessment Launched Successfully</h1>
-      <p>The envelope has been sent and is now active in Docusign.</p>
+      <h1>Assessment Started Successfully</h1>
+      <p>The envelope has been sent and is now active in DocuSign.</p>
       <div class="id-box">Envelope ID: ${envelopeId}</div>
-       <p><a href="${viewResult.url}" class="button">Sign as Supervisor</a></p>
+      <p style="margin-top: 2rem;"><a href="/" class="button">Sign</a></p>
     </div>
   </body>
   </html>
@@ -187,8 +176,7 @@ async function launchEnvelope(envelopeApi) {
       name: "Scott Docusign",
       email: "sdtdsign+iam@gmail.com",
       recipientId: "1",           
-      routingOrder: "1",
-      clientUserId: "1001"
+      routingOrder: "1"
     },
                {
       roleName: "Nurse", // Must match template role
