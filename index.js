@@ -55,6 +55,11 @@ async function launchEnvelope(envelopeApi) {
         name: "Nancy Nurse",
         email: "sdtdsign+nancy@gmail.com"
       }
+   {
+        roleName: "Supervisor",
+        name: "Scott Docusign",
+        email: "sdtdsign+iam@gmail.com"
+      },
     ],
     status: "sent"
   };
