@@ -15,8 +15,8 @@ const scopes = ["signature", "impersonation"];
 
 app.get('/', (req, res) => {
   const authURL = `https://${DS_AUTH_SERVER}/oauth/auth?response_type=code&scope=${scopes.join('+')}&client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}`;
-res.send(`<a href="${authURL}">Launch Clinical Skills Assessment</a>`);
-
+  res.send(`<a href="${authURL}">Launch Clinical Skills Assessment</a>`);
+});
 
 app.get('/callback', async (req, res) => {
   const { code } = req.query;
@@ -45,7 +45,7 @@ async function launchEnvelope(envelopeApi) {
   const envDef = {
     templateId: process.env.TEMPLATE_ID,
     templateRoles: [
-               {
+{
       roleName: "Supervisor", // Must match template role
       name: "Scott Docusign",
       email: "sdtdsign+iam@gmail.com",
