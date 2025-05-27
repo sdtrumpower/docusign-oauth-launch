@@ -160,6 +160,7 @@ app.get('/callback', async (req, res) => {
       <h1>Assessment Started Successfully</h1>
       <p>The assessment has been created and is now ready.</p>
       <div class="id-box">Envelope ID: ${envelopeId}</div>
+      <div class="id-box">Assessment Created on:</div>
       <div class="id-box"><p id="datetime"></p>
   <script>
     // Get the current date and time
@@ -169,9 +170,9 @@ app.get('/callback', async (req, res) => {
     var datetime = now.toLocaleString();
 
     // Update the HTML content
-  <p This assessment was created:  document.getElementById("datetime").innerHTML = datetime;
+  document.getElementById("datetime").innerHTML = datetime;
   </script></div>
-         <div class="id-box">This assessment is for: Scott Trumpower</div>
+         <div class="id-box">This assessment is for: <b>Scott Trumpower</b></div>
 
       <p style="margin-top: 2rem;"><a href="https://apps-d.docusign.com/send/documents?label=action-required" class="button">Begin Assessment</a></p>
     </div>
