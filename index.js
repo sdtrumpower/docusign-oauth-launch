@@ -155,7 +155,12 @@ app.get('/callback', async (req, res) => {
     </style>
   </head>
   <body>
-    <p id="datetime"></p>
+    
+   <div class="card">
+      <h1>Assessment Started Successfully</h1>
+      <p>The assessment has been created and is now ready.</p>
+      <div class="id-box">Envelope ID: ${envelopeId}</div>
+      <div class="id-box"><p id="datetime"></p>
   <script>
     // Get the current date and time
     var now = new Date();
@@ -165,12 +170,7 @@ app.get('/callback', async (req, res) => {
 
     // Update the HTML content
     document.getElementById("datetime").innerHTML = datetime;
-  </script>
-  
-    <div class="card">
-      <h1>Assessment Started Successfully</h1>
-      <p>The envelope has been sent and is now active in DocuSign.</p>
-      <div class="id-box">Envelope ID: ${envelopeId}</div>
+  </script></div>
    
       <div class="id-box">This assessment is for: Scott Trumpower</div>
 
