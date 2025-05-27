@@ -156,18 +156,18 @@ app.get('/callback', async (req, res) => {
   </head>
  <body>
   <div class="card">
-    <h1>Assessment Started Successfully</h1>
-    <p>The assessment has been created and is now ready.</p>
-
-    <div class="id-box">Envelope ID: ${envelopeId}</div>
-
-    <div class="id-box">
-      Assessment Created on: <span id="datetime" style="font-weight: bold;"></span>
-    </div>
+    <h1>Assessment is Ready</h1>
+    <p>Additional instruction...</p>
 
     <div class="id-box">
       This assessment is for: <b>Scott Trumpower</b>
     </div>
+        
+    <div class="id-box">
+      Assessment created on: <span id="datetime" style="font-weight: bold;"></span>
+    </div>
+
+    <div class="id-box">Docusign Envelope ID: ${envelopeId}</div>
 
     <p style="margin-top: 2rem;">
       <a href="https://apps-d.docusign.com/send/documents?label=action-required" class="button">Begin Assessment</a>
