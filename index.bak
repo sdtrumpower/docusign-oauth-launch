@@ -66,7 +66,7 @@ app.get('/', (req, res) => {
   </head>
   <body>
     <div class="container">
-      <h1>Launch Clinical Skills Assessment</h1>
+      <h1>Clinical Skills Assessment</h1>
       <p>This secure session will guide a supervisor and nurse through a multi-step evaluation.</p>
       <a href="${authURL}" class="button">Prepare Assessment</a>
     </div>
@@ -155,13 +155,26 @@ app.get('/callback', async (req, res) => {
     </style>
   </head>
   <body>
-    <div class="card">
+    
+   <div class="card">
       <h1>Assessment Started Successfully</h1>
-      <p>The envelope has been sent and is now active in DocuSign.</p>
+      <p>The assessment has been created and is now ready.</p>
       <div class="id-box">Envelope ID: ${envelopeId}</div>
-      <div class="id-box">Timestamp: <time datetime="2025-05-27T16:32:57-04:00">May 27, 2025, 4:32 PM EDT</time></div>      
-      <div class="id-box">This assessment is for: Scott Trumpower</div>
-      <p style="margin-top: 2rem;"><a href="/" class="button">Begin Assessment</a></p>
+      <div class="id-box">Assessment Created on:</div>
+      <div class="id-box"><p id="datetime"></p>
+  <script>
+    // Get the current date and time
+    var now = new Date();
+
+    // Format the date and time
+    var datetime = now.toLocaleString();
+
+    // Update the HTML content
+  document.getElementById("datetime").innerHTML = datetime;
+  </script></div>
+         <div class="id-box">This assessment is for: <b>Scott Trumpower</b></div>
+
+      <p style="margin-top: 2rem;"><a href="https://apps-d.docusign.com/send/documents?label=action-required" class="button">Begin Assessment</a></p>
     </div>
   </body>
   </html>
