@@ -52,14 +52,12 @@ async function launchEnvelope(envelopeApi) {
       recipientId: "1",           
       routingOrder: "1"
     },
-    {
-      roleName: "Nurse", // Also must match template role
-      recipientId: "2",
-      routingOrder: "2",
-      inPersonSignerName: "Nancy Nurse",
-      signerEmail: "sdtdsign+nancy@gmail.com", // Required field even if not real
-      hostName: "Scott Docusign",
-      hostEmail: "sdtdsign+iam@gmail.com"
+               {
+      roleName: "Nurse", // Must match template role
+      name: "Nancy Nurse",
+      email: "sdtdsign+nancy@gmail.com",
+      recipientId: "2",           
+      routingOrder: "2"
     },
         ],
         status: "sent"
