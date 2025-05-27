@@ -56,17 +56,10 @@ async function launchEnvelope(envelopeApi) {
           {
             roleName: "Nurse",
             name: "Nancy Nurse",
-            email: "placeholder@example.com", // DocuSign needs an email, but it won't be used
+            email: "sdtdsign+nancy@gmail.com", // Docusign needs an email, but it won't be used
             clientUserId: "2",
             recipientId: "2"
           },
-          {
-            roleName: "Supervisor",
-            name: "Scott Docusign",
-            email: "sdtdsign+iam@gmail.com",
-            clientUserId: "3",
-            recipientId: "3"
-          }
         ],
         status: "sent"
       };
