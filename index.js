@@ -68,7 +68,7 @@ app.get('/', (req, res) => {
     <div class="container">
       <h1>Launch Clinical Skills Assessment</h1>
       <p>This secure session will guide a supervisor and nurse through a multi-step evaluation.</p>
-      <a href="${authURL}" class="button">Begin Assessment</a>
+      <a href="${authURL}" class="button">Prepare Assessment</a>
     </div>
   </body>
   </html>
@@ -100,7 +100,7 @@ app.get('/callback', async (req, res) => {
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Assessment Launched</title>
+    <title>Assessment Prepared</title>
     <style>
       body {
         margin: 0;
@@ -159,7 +159,9 @@ app.get('/callback', async (req, res) => {
       <h1>Assessment Started Successfully</h1>
       <p>The envelope has been sent and is now active in DocuSign.</p>
       <div class="id-box">Envelope ID: ${envelopeId}</div>
-      <p style="margin-top: 2rem;"><a href="/" class="button">Sign</a></p>
+      <div class="id-box">Timestamp: <time datetime="2025-05-27T16:32:57-04:00">May 27, 2025, 4:32 PM EDT</time></div>      
+      <div class="id-box">This assessment is for: Scott Trumpower</div>
+      <p style="margin-top: 2rem;"><a href="/" class="button">Begin Assessment</a></p>
     </div>
   </body>
   </html>
