@@ -45,21 +45,20 @@ async function launchEnvelope(envelopeApi) {
   const envDef = {
     templateId: process.env.TEMPLATE_ID,
     templateRoles: [
-                {
-            roleName: "Supervisor",
-            name: "Scott Docusign",
-            email: "sdtdsign+iam.com",
-            inPersonSignerName: "Nancy Nurse",
-            clientUserId: "1",
-            recipientId: "1"
-          },
-          {
-            roleName: "Nurse",
-            name: "Nancy Nurse",
-            email: "sdtdsign+nancy@gmail.com", // Docusign needs an email, but it won't be used
-            clientUserId: "2",
-            recipientId: "2"
-          },
+               {
+      roleName: "Supervisor", // Must match template role
+      name: "Scott Docusign",
+      email: "sdtdsign+iam@gmail.com",
+      routingOrder: "1"
+    },
+    {
+      roleName: "Nurse", // Also must match template role
+      routingOrder: "2",
+      inPersonSignerName: "Nancy Nurse",
+      signerEmail: "sdtdsign+nancy@gmail.com", // Required field even if not real
+      hostName: "Scott Docusign",
+      hostEmail: "sdtdsign+iam@gmail.com"
+    },
         ],
         status: "sent"
       };
