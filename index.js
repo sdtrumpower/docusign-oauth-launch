@@ -155,12 +155,25 @@ app.get('/callback', async (req, res) => {
     </style>
   </head>
   <body>
+    <p id="datetime"></p>
+  <script>
+    // Get the current date and time
+    var now = new Date();
+
+    // Format the date and time
+    var datetime = now.toLocaleString();
+
+    // Update the HTML content
+    document.getElementById("datetime").innerHTML = datetime;
+  </script>
+  
     <div class="card">
       <h1>Assessment Started Successfully</h1>
       <p>The envelope has been sent and is now active in DocuSign.</p>
       <div class="id-box">Envelope ID: ${envelopeId}</div>
-      <div class="id-box">Timestamp: <time datetime="2025-05-27T16:32:57-04:00">May 27, 2025, 4:32 PM EDT</time></div>      
+   
       <div class="id-box">This assessment is for: Scott Trumpower</div>
+
       <p style="margin-top: 2rem;"><a href="/" class="button">Begin Assessment</a></p>
     </div>
   </body>
