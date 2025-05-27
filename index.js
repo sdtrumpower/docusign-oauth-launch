@@ -92,7 +92,8 @@ app.get('/callback', async (req, res) => {
   apiClient.addDefaultHeader('Authorization', 'Bearer ' + results.accessToken);
 
   // Launch envelope
-  const envelopeApi = new docusign.EnvelopesApi(apiClient);
+ const envelopesApi = new docusign.EnvelopesApi();
+envelopesApi.setApiClient(apiClient); // or dsApiClient, depending on your variable
   const envelopeId = await launchEnvelope(envelopeApi);
   const viewRequest = {
   returnUrl: 'https://docusign-oauth-launch.onrender.com/done',
