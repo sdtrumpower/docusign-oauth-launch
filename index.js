@@ -54,7 +54,10 @@ async function launchEnvelope(envelopeApi) {
     },
                {
       roleName: "Nurse", // Must match template role
-      name: "Scott Trumpower",
+      inPersonSignerName: "Scott Trumpower",
+      signerEmail: "placeholder@example.com", // Required field even if not real
+      hostName: "Scott Docusign",
+      hostEmail: "sdtdsign+iam@gmail.com",
       recipientId: "2",           
       routingOrder: "2"
     },
