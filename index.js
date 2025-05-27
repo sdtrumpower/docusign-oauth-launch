@@ -13,7 +13,7 @@ const oauthBasePath = 'account-d.docusign.com';
 
 const scopes = ["signature", "impersonation"];
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   const authURL = `https://${DS_AUTH_SERVER}/oauth/auth?response_type=code&scope=${scopes.join('+')}&client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}`;
   res.send(`
   <!DOCTYPE html>
