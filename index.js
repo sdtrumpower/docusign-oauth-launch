@@ -187,6 +187,7 @@ async function launchEnvelope(envelopeApi) {
       roleName: "Supervisor", // Must match template role
       name: "Scott Docusign",
       email: "sdtdsign+iam@gmail.com",
+      clientUserId: '1001',
       recipientId: "1",           
       routingOrder: "1"
     },
