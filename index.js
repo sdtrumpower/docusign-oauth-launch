@@ -15,64 +15,7 @@ const scopes = ["signature", "impersonation"];
 
 app.get('/', (req, res) => {
   const authURL = `https://${DS_AUTH_SERVER}/oauth/auth?response_type=code&scope=${scopes.join('+')}&client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}`;
-res.send(`
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Clinical Skills Assessment</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: #f0f4f8;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-      }
-      .container {
-        background: white;
-        padding: 3rem 4rem;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        border-radius: 12px;
-        text-align: center;
-        max-width: 500px;
-      }
-      h1 {
-        color: #2a4365;
-        margin-bottom: 1rem;
-      }
-      p {
-        color: #4a5568;
-        font-size: 1rem;
-        margin-bottom: 2rem;
-      }
-      a.button {
-        display: inline-block;
-        background-color: #2b6cb0;
-        color: white;
-        padding: 0.75rem 1.5rem;
-        text-decoration: none;
-        border-radius: 8px;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-      }
-      a.button:hover {
-        background-color: #2c5282;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Launch Clinical Skills Assessment</h1>
-      <p>This secure session will guide a supervisor and nurse through a multi-step evaluation.</p>
-      <a href="${authURL}" class="button">Start Assessment</a>
-    </div>
-  </body>
-  </html>
-`);
+res.send(`<a href="${authURL}">Launch Clinical Skills Assessment</a>`);
 
 
 app.get('/callback', async (req, res) => {
