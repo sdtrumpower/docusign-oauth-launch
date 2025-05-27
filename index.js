@@ -66,7 +66,7 @@ app.get('/', (req, res) => {
   </head>
   <body>
     <div class="container">
-      <h1>Launch Clinical Skills Assessment</h1>
+      <h1>Clinical Skills Assessment</h1>
       <p>This secure session will guide a supervisor and nurse through a multi-step evaluation.</p>
       <a href="${authURL}" class="button">Prepare Assessment</a>
     </div>
@@ -169,12 +169,11 @@ app.get('/callback', async (req, res) => {
     var datetime = now.toLocaleString();
 
     // Update the HTML content
-    document.getElementById("datetime").innerHTML = datetime;
+  <p This assessment was created:  document.getElementById("datetime").innerHTML = datetime;
   </script></div>
-   
-      <div class="id-box">This assessment is for: Scott Trumpower</div>
+         <div class="id-box">This assessment is for: Scott Trumpower</div>
 
-      <p style="margin-top: 2rem;"><a href="/" class="button">Begin Assessment</a></p>
+      <p style="margin-top: 2rem;"><a href="https://apps-d.docusign.com/send/documents?label=action-required" class="button">Begin Assessment</a></p>
     </div>
   </body>
   </html>
