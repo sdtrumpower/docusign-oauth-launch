@@ -68,6 +68,9 @@ app.get('/', (req, res) => {
     <div class="container">
       <h1>Clinical Skills Assessment</h1>
       <p>This secure session will guide a supervisor and nurse through a multi-step evaluation.</p>
+
+       <input type="text" placeholder="Enter Nurse Full Name (for demo)" />
+       
       <a href="${authURL}" class="button">Prepare Assessment</a>
     </div>
   </body>
@@ -169,16 +172,9 @@ app.get('/callback', async (req, res) => {
 
     <div class="id-box">Docusign Envelope ID: ${envelopeId}</div>
 
-<div style="margin-top: 2rem;">
-  <input
-    type="text"
-    placeholder="Enter Nurse Full Name"
-    style="padding: 0.75rem; font-size: 1rem; width: 100%; border-radius: 6px; border: 1px solid #cbd5e0; margin-bottom: 1.5rem;"
-  />
-  <br />
-  <a href="https://apps-d.docusign.com/send/documents?label=action-required" class="button">Begin Assessment</a>
-</div>
-
+    <p style="margin-top: 2rem;">
+      <a href="https://apps-d.docusign.com/send/documents?label=action-required" class="button">Begin Assessment</a>
+    </p>
   </div>
 
   <script>
