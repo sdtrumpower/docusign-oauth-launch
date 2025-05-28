@@ -15,6 +15,7 @@ const scopes = ["signature", "impersonation"];
 
 app.get('/', (req, res) => {
   const authURL = `https://${DS_AUTH_SERVER}/oauth/auth?response_type=code&scope=${scopes.join('+')}&client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}`;
+ 
   res.send(`
   <!DOCTYPE html>
   <html lang="en">
@@ -49,6 +50,14 @@ app.get('/', (req, res) => {
         font-size: 1rem;
         margin-bottom: 2rem;
       }
+      input[type="text"] {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 2rem;
+        font-size: 1rem;
+        border: 1px solid #cbd5e0;
+        border-radius: 6px;
+      }
       a.button {
         display: inline-block;
         background-color: #2b6cb0;
@@ -68,12 +77,14 @@ app.get('/', (req, res) => {
     <div class="container">
       <h1>Clinical Skills Assessment</h1>
       <p>This secure session will guide a supervisor and nurse through a multi-step evaluation.</p>
-      <a href="${authURL}" class="button">Prepare Assessment</a>
+      
+      <input type="text" placeholder="Enter Nurse Full Name" />
+
+      <a href="/start" class="button">Start Assessment</a>
     </div>
   </body>
   </html>
 `);
-});
 
 app.get('/callback', async (req, res) => {
   const { code } = req.query;
