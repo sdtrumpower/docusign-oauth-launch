@@ -68,6 +68,9 @@ app.get('/', (req, res) => {
     <div class="container">
       <h1>Clinical Skills Assessment</h1>
       <p>This secure session will guide a supervisor and nurse through a multi-step evaluation.</p>
+
+      <input type="text" placeholder="Full Name of Nurse being Assessed: />
+      
       <a href="${authURL}" class="button">Prepare Assessment</a>
     </div>
   </body>
